@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>THUAAN FY | Space Gate</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="landscape-notification" id="landscapeNotification">
+        <div class="notification-frame" aria-hidden="true"></div>
+        <div class="notification-content">
+            <span class="notification-kicker">Orbit View</span>
+            <h3>Space Gate Ready</h3>
+            <p class="instruction-vi">Rotate your phone for the full orbital view.</p>
+            <p class="instruction-en">You can also continue in portrait mode.</p>
+            <div class="rotate-icon"><i class="bi bi-phone"></i></div>
+            <div class="skip-button" onclick="skipLandscapeMode()">
+                Continue <i class="bi bi-arrow-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="pin-container" id="pinContainer">
+        <div class="ambient-grid" aria-hidden="true"></div>
+        <div class="light-ribbon ribbon-one" aria-hidden="true"></div>
+        <div class="light-ribbon ribbon-two" aria-hidden="true"></div>
+
+        <div class="pin-card">
+            <div class="gate-topbar">
+                <span>BFY-GATE</span>
+                <span>SECTOR 10.09</span>
+            </div>
+
+            <div class="brand-lockup">
+                <div class="gate-orbit" aria-hidden="true">
+                    <span class="orbit-ring orbit-ring-one"></span>
+                    <span class="orbit-ring orbit-ring-two"></span>
+                    <span class="orbit-core"></span>
+                    <img src="images/logoTP.png" alt="TP logo" class="brand-mark">
+                </div>
+            </div>
+
+            <span class="brand-kicker">/ AUTH CHANNEL</span>
+            <h1 class="pin-title">Space Gate</h1>
+            <p class="pin-subtitle">Identity signal locked. Enter launch code.</p>
+
+            <div class="code-label">
+                <span>ACCESS CODE</span>
+                <span>4 DIGITS</span>
+            </div>
+
+            <div class="otp-container">
+                <div class="otp-slot">
+                    <input type="text" class="otp-input" id="otp1" maxlength="1" inputmode="numeric" aria-label="Access code digit 1">
+                </div>
+                <div class="otp-slot">
+                    <input type="text" class="otp-input" id="otp2" maxlength="1" inputmode="numeric" aria-label="Access code digit 2">
+                </div>
+                <div class="otp-slot">
+                    <input type="text" class="otp-input" id="otp3" maxlength="1" inputmode="numeric" aria-label="Access code digit 3">
+                </div>
+                <div class="otp-slot">
+                    <input type="text" class="otp-input" id="otp4" maxlength="1" inputmode="numeric" aria-label="Access code digit 4">
+                </div>
+            </div>
+
+            <button class="btn pin-btn" onclick="checkPin()">
+                <i class="bi bi-rocket-takeoff"></i>
+                Open The Gate
+            </button>
+            <div class="error-message" id="errorMessage"></div>
+
+            <div class="gate-footer">
+                <span>STATUS: LOCKED</span>
+                <span>NODE: BFY-20</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="matrix-container" id="matrixContainer">
+        <canvas class="matrix-rain" id="matrixRain"></canvas>
+        <div class="matrix-text" id="matrixText"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
