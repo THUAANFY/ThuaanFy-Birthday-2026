@@ -198,7 +198,16 @@ function skipLandscapeMode() {
 
 function showMatrixDisplay() {
     const matrixContainer = document.getElementById("matrixContainer")
+    const phaohoaFinalScreen = document.getElementById("phaohoaFinalScreen")
+    const phaohoaFinalFrame = document.getElementById("phaohoaFinalFrame")
+    const birthdayFinalTitle = document.getElementById("birthdayFinalTitle")
+
     matrixContainer.style.display = "block"
+    matrixContainer.classList.remove("phaohoa-stage")
+    phaohoaFinalScreen.classList.remove("show")
+    phaohoaFinalScreen.setAttribute("aria-hidden", "true")
+    phaohoaFinalFrame.removeAttribute("src")
+    birthdayFinalTitle.setAttribute("aria-hidden", "true")
     isMatrixActive = true
 
     // Initialize matrix rain
@@ -210,7 +219,7 @@ function showMatrixDisplay() {
 
 // Matrix text sequence with glitch effect
 function startMatrixSequence() {
-    const messages = ["ORBIT ONLINE", "HAPPY BIRTHDAY", "TO ME", "10.09.2005", "LE THUAN PHI", "LEVEL 21 ACTIVE", "TO THE STARS"]
+    const messages = ["HAPPY BIRTHDAY", "LE THUAN PHI", "10.09.2005", "LEVEL 21 ACTIVE", "TO THE STARS"]
     let currentIndex = 0
 
     function createTextDisplay(text) {
@@ -343,16 +352,21 @@ function startMatrixSequence() {
 
 function createFinalDisplay() {
     const container = document.getElementById("matrixText")
+    const matrixContainer = document.getElementById("matrixContainer")
+    const phaohoaFinalScreen = document.getElementById("phaohoaFinalScreen")
+    const phaohoaFinalFrame = document.getElementById("phaohoaFinalFrame")
+    const birthdayFinalTitle = document.getElementById("birthdayFinalTitle")
+
     container.innerHTML = ""
-    container.className = "final-display"
+    container.className = "matrix-text"
+    matrixContainer.classList.add("phaohoa-stage")
+    phaohoaFinalScreen.classList.add("show")
+    phaohoaFinalScreen.setAttribute("aria-hidden", "false")
+    birthdayFinalTitle.setAttribute("aria-hidden", "false")
 
-    const logoImg = document.createElement("img")
-    logoImg.src = "images/logoTP.png"
-    logoImg.alt = "Logo TP"
-    logoImg.className = "final-logo"
-
-    container.appendChild(logoImg)
-    container.classList.add("show")
+    if (!phaohoaFinalFrame.getAttribute("src")) {
+        phaohoaFinalFrame.setAttribute("src", phaohoaFinalFrame.dataset.src)
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {

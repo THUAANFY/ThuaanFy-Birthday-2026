@@ -352,10 +352,10 @@ input {
 
 .pin-subtitle {
     width: 100%;
-    max-width: 450px;
+    max-width: 350px;
     position: relative;
     z-index: 2;
-    margin: 0 0 24px;
+    margin: 0 auto 24px;
     color: var(--muted);
     font-size: 0.92rem;
     font-weight: 500;
@@ -636,6 +636,7 @@ input {
 .matrix-rain {
     position: absolute;
     inset: 0;
+    z-index: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
@@ -665,6 +666,109 @@ input {
     overflow-wrap: anywhere;
     word-break: normal;
     white-space: normal;
+}
+
+.phaohoa-final-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    display: none;
+    overflow: hidden;
+    background: transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 900ms ease;
+}
+
+.phaohoa-final-screen.show {
+    display: block;
+    opacity: 1;
+}
+
+.phaohoa-final-screen iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+    background: transparent;
+    pointer-events: none;
+}
+
+.final-watermark-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 36;
+    width: min(520px, 64vw);
+    max-height: 52vh;
+    object-fit: contain;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.9);
+    transition: opacity 1200ms ease, transform 1200ms ease;
+}
+
+.birthday-final-title {
+    width: min(980px, calc(100% - 36px));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 40;
+    color: #f4fbff;
+    font-size: 3.35rem;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: 0;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 14px rgba(238, 250, 255, 0.95),
+        0 0 38px rgba(53, 232, 255, 0.72),
+        0 0 72px rgba(26, 125, 255, 0.5),
+        0 22px 56px rgba(0, 0, 0, 0.86);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(0.96);
+    transition: opacity 900ms ease, transform 900ms ease;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    white-space: normal;
+}
+
+.matrix-container.phaohoa-stage .matrix-rain {
+    opacity: 0.28;
+    filter: blur(4px) saturate(0.72);
+}
+
+.matrix-container.phaohoa-stage::before {
+    opacity: 0.22;
+    filter: blur(3px);
+}
+
+.matrix-container.phaohoa-stage::after {
+    height: 100%;
+    background:
+        radial-gradient(ellipse at 50% 48%, rgba(53, 232, 255, 0.16), transparent 42%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.68));
+}
+
+.matrix-container.phaohoa-stage .matrix-text {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.matrix-container.phaohoa-stage .final-watermark-logo {
+    opacity: 0.12;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.matrix-container.phaohoa-stage .birthday-final-title {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.birthday-final-title span {
+    display: block;
 }
 
 .matrix-text.show {
@@ -732,70 +836,6 @@ input {
     background: var(--cyan);
     box-shadow: 0 0 18px rgba(53, 232, 255, 0.58);
     animation: energyWaveExpand 2s ease-out forwards;
-}
-
-.final-display {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 10;
-    width: 92vw;
-    width: 92dvw;
-    max-width: 1040px;
-    padding: 24px;
-    text-align: center;
-    opacity: 0;
-    transform: translate(-50%, -50%);
-}
-
-.final-display.show {
-    opacity: 1;
-    animation: finalGlow 1s ease-in-out;
-}
-
-.final-display .final-logo {
-    width: 620px;
-    max-width: 78vw;
-    max-width: 78dvw;
-    max-height: 68vh;
-    height: auto;
-    object-fit: contain;
-    opacity: 0;
-    transform: scale(0.86);
-    filter:
-        drop-shadow(0 28px 50px rgba(0, 0, 0, 0.76))
-        drop-shadow(0 0 32px rgba(53, 232, 255, 0.66));
-    animation: logoAppear 1.45s ease-out forwards;
-}
-
-.final-display .line {
-    margin: 14px 0;
-    color: var(--text);
-    opacity: 0;
-    transform: translateY(18px);
-    text-shadow: 0 0 18px rgba(53, 232, 255, 0.62);
-    animation: lineSlideIn 0.8s ease-out forwards;
-    overflow-wrap: anywhere;
-}
-
-.final-display .line:nth-child(1) {
-    font-size: 2rem;
-    animation-delay: 0s;
-}
-
-.final-display .line:nth-child(2) {
-    font-size: 2rem;
-    animation-delay: 0.3s;
-}
-
-.final-display .line:nth-child(3) {
-    font-size: 1.8rem;
-    animation-delay: 0.6s;
-}
-
-.final-display .line:nth-child(4) {
-    font-size: 1.8rem;
-    animation-delay: 0.9s;
 }
 
 .landscape-notification {
@@ -1169,58 +1209,6 @@ input {
     }
 }
 
-@keyframes logoAppear {
-    0% {
-        opacity: 0;
-        transform: scale(0.86) translateY(20px);
-        filter:
-            drop-shadow(0 16px 24px rgba(0, 0, 0, 0.6))
-            drop-shadow(0 0 6px rgba(53, 232, 255, 0.24));
-    }
-
-    62% {
-        opacity: 1;
-        transform: scale(1.04) translateY(0);
-        filter:
-            drop-shadow(0 30px 52px rgba(0, 0, 0, 0.76))
-            drop-shadow(0 0 38px rgba(53, 232, 255, 0.78));
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-        filter:
-            drop-shadow(0 28px 50px rgba(0, 0, 0, 0.76))
-            drop-shadow(0 0 32px rgba(53, 232, 255, 0.66));
-    }
-}
-
-@keyframes finalGlow {
-    0% {
-        filter: none;
-    }
-
-    50% {
-        filter: none;
-    }
-
-    100% {
-        filter: none;
-    }
-}
-
-@keyframes lineSlideIn {
-    0% {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 @keyframes gentleRotate {
     0%,
     12% {
@@ -1411,7 +1399,7 @@ input {
     }
 
     .pin-subtitle {
-        max-width: 200px;
+        max-width: 296px;
         margin-bottom: 20px;
         font-size: 0.78rem;
     }
@@ -1455,14 +1443,15 @@ input {
         font-size: 1.82rem;
     }
 
-    .final-display {
-        padding: 12px;
+    .birthday-final-title {
+        width: min(320px, calc(100% - 28px));
+        font-size: 1.46rem;
+        line-height: 1.18;
     }
 
-    .final-display .final-logo {
-        max-width: 86vw;
-        max-width: 86dvw;
-        max-height: 54vh;
+    .final-watermark-logo {
+        width: min(300px, 76vw);
+        max-height: 38vh;
     }
 
     .landscape-notification h3 {
@@ -1490,11 +1479,11 @@ input {
         font-size: 2.34rem;
     }
 
-    .final-display .final-logo {
-        max-width: 84vw;
-        max-width: 84dvw;
-        max-height: 58vh;
+    .birthday-final-title {
+        width: min(620px, calc(100% - 36px));
+        font-size: 2.15rem;
     }
+
 }
 
 @media screen and (min-width: 769px) {
@@ -1502,17 +1491,8 @@ input {
         font-size: 4rem;
     }
 
-    .final-display .line:nth-child(1) {
-        font-size: 3.5rem;
-    }
-
-    .final-display .line:nth-child(2) {
-        font-size: 2.8rem;
-    }
-
-    .final-display .line:nth-child(3),
-    .final-display .line:nth-child(4) {
-        font-size: 2.3rem;
+    .birthday-final-title span {
+        display: inline;
     }
 }
 
@@ -1772,10 +1752,6 @@ input {
 
     .matrix-text {
         font-size: 2.24rem;
-    }
-
-    .final-display .final-logo {
-        max-height: 78vh;
     }
 
     .landscape-notification h3 {
